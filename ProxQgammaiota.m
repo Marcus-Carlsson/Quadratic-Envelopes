@@ -9,7 +9,11 @@ function x = ProxQgammaiota(y,k,gamma,rho) %k is the cardinality, r=rho and g=ga
 [n1,n2]=size(y);if n2~=1, y=conj(y');end;%if we get a row vector, make it column vector
 
 r=abs(y);%sets up polar coordinates
-theta=exp(i*angle(y));
+if isreal(y), 
+    theta=sign(y);
+else
+    theta=exp(i*angle(y));
+end
 n=length(y);
 
 [rsort,id]=sort(r,'descend');
